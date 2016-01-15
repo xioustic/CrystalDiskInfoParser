@@ -12,9 +12,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 Components Used
 ===============
-**CrystalDiskInfo (DiskInfo.exe)**
-http://crystalmark.info/software/CrystalDiskInfo/
-------------------------------
+CrystalDiskInfo (DiskInfo.exe) - http://crystalmark.info/software/CrystalDiskInfo/
+----------------------------------------------------------------------------------
 MIT LICENSE
 
 Copyright (c) 2008-2015 hiyohiyo
