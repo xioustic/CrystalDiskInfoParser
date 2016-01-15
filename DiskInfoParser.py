@@ -128,5 +128,50 @@ for linenum, line in enumerate(input_data.splitlines()):
       obj['disks'][int(curdiskidx)-1]["S.M.A.R.T."].append(smartobj)
     continue
 
+  if curmode == ReadMode.identifydata:
+    # skip header
+    if line.startswith("    "):
+      continue
+
+    # extract hex, stripping off index at beginning
+    hexdata = "".join(line.split(" ")[1:])
+
+    # initialize on disk object if needed
+    if "IDENTIFY_DEVICE" not in obj['disks'][int(curdiskidx)-1]:
+      obj['disks'][int(curdiskidx)-1]["IDENTIFY_DEVICE"] = ""
+
+    obj['disks'][int(curdiskidx)-1]["IDENTIFY_DEVICE"] += hexdata
+    continue
+
+  if curmode == ReadMode.smartreaddata:
+    # skip header
+    if line.startswith("    "):
+      continue
+
+    # extract hex, stripping off index at beginning
+    hexdata = "".join(line.split(" ")[1:])
+
+    # initialize on disk object if needed
+    if "SMART_READ_DATA" not in obj['disks'][int(curdiskidx)-1]:
+      obj['disks'][int(curdiskidx)-1]["SMART_READ_DATA"] = ""
+
+    obj['disks'][int(curdiskidx)-1]["SMART_READ_DATA"] += hexdata
+    continue
+
+  if curmode == ReadMode.smartreadthreshold:
+    # skip header
+    if line.startswith("    "):
+      continue
+
+    # extract hex, stripping off index at beginning
+    hexdata = "".join(line.split(" ")[1:])
+
+    # initialize on disk object if needed
+    if "SMART_READ_THRESHOLD" not in obj['disks'][int(curdiskidx)-1]:
+      obj['disks'][int(curdiskidx)-1]["SMART_READ_THRESHOLD"] = ""
+
+    obj['disks'][int(curdiskidx)-1]["SMART_READ_THRESHOLD"] += hexdata
+    continue
+
 # output data
 print json.dumps(obj, indent=2, separators=(",", ": "))
