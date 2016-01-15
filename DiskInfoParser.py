@@ -116,5 +116,17 @@ for linenum, line in enumerate(input_data.splitlines()):
       obj['disks'][int(curdiskidx)-1][attribute] = value
     continue
 
+  if curmode == ReadMode.smartdata:
+    result = re.search("^([A-F0-9]{2}) _*(\d*) _*(\d*) _*(\d*) ([A-F0-9]{12}) (.*)$",line)
+    if result:
+      _id, cur, wor, thr, rawvalues, attributename = result.groups()
+      smartobj = {"ID": _id, "Cur": cur, "Wor": wor, "Thr": thr, "RawValues": rawvalues, "Attribute Name": attributename}
+
+      if "S.M.A.R.T." not in obj['disks'][int(curdiskidx)-1]:
+        obj['disks'][int(curdiskidx)-1]["S.M.A.R.T."] = []
+
+      obj['disks'][int(curdiskidx)-1]["S.M.A.R.T."].append(smartobj)
+    continue
+
 # output data
 print json.dumps(obj, indent=2, separators=(",", ": "))
