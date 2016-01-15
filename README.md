@@ -1,6 +1,6 @@
 What Is This?
 =============
-This utility spits all information gathered from the [CrystalDiskInfo](http://crystalmark.info/software/CrystalDiskInfo/index-e.html) program in JSON format.
+This utility spits all information gathered from the [CrystalDiskInfo](http://crystalmark.info/software/CrystalDiskInfo/index-e.html) program into a parsable JSON file.
 
 Why?
 ====
