@@ -2,13 +2,14 @@
 by Xioustic (https://github.com/xioustic/)
 
 Uses DiskInfo.exe to create DiskInfo.txt data, then reads
-that in and spits out JSON.
+that in and outputs JSON.
 """
 
 import subprocess
 import enum
 import re
 import json
+import sys
 
 class ReadMode(enum.Enum):
   start = 1
@@ -27,7 +28,9 @@ try:
   status = subprocess.call("DiskInfo.exe /CopyExit")
 except WindowsError, e:
   if "Error 740" in str(e):
-    raise Exception("This program must be run as an administrator.")
+    print "This application must be run as an administrator to get raw access to drives."
+    print "Exiting."
+    sys.exit(1)
   else:
     raise e
 
@@ -95,7 +98,7 @@ for linenum, line in enumerate(input_data.splitlines()):
     result = re.search("^ \((\d+)\) (.*) : (.*) \[.*$",line)
     if result:
       idx, name, size = result.groups()
-      obj['disks'].append({"idx": idx, "name": name, "size": size})
+      obj['disks'].append({"DiskNum": idx, "Model": name, "Disk Size": size})
     elif line.startswith("-----------------"):
       curmode = ReadMode.drivedata
     continue
@@ -110,9 +113,8 @@ for linenum, line in enumerate(input_data.splitlines()):
     splitstrip = [x.strip() for x in line.split(" : ")]
     if len(splitstrip) > 1:
       attribute, value = splitstrip
+      obj['disks'][int(curdiskidx)-1][attribute] = value
     continue
-
-
 
 # output data
 print json.dumps(obj, indent=2, separators=(",", ": "))
