@@ -1,0 +1,44 @@
+controller_disks: {
+  controller_name(string): [disk_name(string),...]
+}
+disks: [disk(diskobj),...]
+
+diskobj:
+  {
+    idx(int),
+    name(string),
+    size(string),
+    model(string),
+    firmware(string),
+    serial(string),
+    disksize(string),
+    buffersize(string),
+    queuedepth(string),
+    numsectors(string),
+    rotation(string),
+    interface(string),
+    majorversion(string),
+    minorversion(string)
+    transfermode(string),
+    poweronhours(string),
+    poweroncount(string),
+    temp(string),
+    health(string),
+    features(string),
+    apmlevel(string),
+    aamlevel(string),
+    smartdata: [smartobj,...]
+    identify(hex[...]),
+    smartreaddata(hex[...]),
+    smartreadthreshold(hex[...])
+  }
+
+smartobj:
+  {
+    id(hex[2]),
+    cur(int),
+    wor(int),
+    thr(int),
+    rawvalues(hex[12]),
+    attribute_name(string)
+  }
