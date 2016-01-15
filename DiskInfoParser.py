@@ -2,7 +2,7 @@
 by Xioustic (https://github.com/xioustic/)
 
 Uses DiskInfo.exe to create DiskInfo.txt data, then reads
-that in and outputs JSON.
+that in and outputs JSON to DiskInfoParser.json.
 """
 
 import subprocess
