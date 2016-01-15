@@ -23,7 +23,7 @@ class ReadMode(enum.Enum):
 
 
 # generate data
-print "Running DiskInfo.exe"
+#print "Running DiskInfo.exe"
 try:
   status = subprocess.call("DiskInfo.exe /CopyExit")
 except WindowsError, e:
@@ -174,4 +174,5 @@ for linenum, line in enumerate(input_data.splitlines()):
     continue
 
 # output data
-print json.dumps(obj, indent=2, separators=(",", ": "))
+with open("DiskInfoParser.json","w") as f:
+  f.write(json.dumps(obj, indent=2, separators=(",", ": "), sort_keys=True))
