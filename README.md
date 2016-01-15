@@ -12,7 +12,7 @@ This repo includes [an example set of sample output with serial numbers censored
 
 Dependencies
 ============
-Everything is raw Python 2.7. The only dependency is the DiskInfo.exe application and CdiResource folder, which is included with this repository. If you want to drop the raw Python 2.7 dependency, consider building a standalone executable for distribution using (PyInstaller)[https://github.com/pyinstaller/pyinstaller].
+Everything is raw Python 2.7. The only dependency is the DiskInfo.exe application and CdiResource folder, which is included with this repository. If you want to drop the raw Python 2.7 dependency, consider building a standalone executable for distribution using [PyInstaller](https://github.com/pyinstaller/pyinstaller).
 
 Usage
 =====
